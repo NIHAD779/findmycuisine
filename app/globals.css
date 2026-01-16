@@ -3,6 +3,14 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  
+  /* E-ink theme colors */
+  --eink-paper: #f5f0e6;
+  --eink-blue: #1a365d;
+  --eink-orange: #c05621;
+  --eink-border: #d4cbb8;
+  --eink-blue-light: #2d4a7c;
+  --eink-shadow: rgba(26, 54, 93, 0.08);
 }
 
 @theme inline {
@@ -10,6 +18,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +29,24 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--eink-paper);
+  color: var(--eink-blue);
   font-family: Arial, Helvetica, sans-serif;
+  position: relative;
+}
+
+/* Paper texture effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.03;
+  z-index: -1;
+  background-image: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.02) 2px, rgba(0,0,0,.02) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.02) 2px, rgba(0,0,0,.02) 4px);
+  pointer-events: none;
 }
